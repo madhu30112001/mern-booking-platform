@@ -1,46 +1,46 @@
-import React, { useContext, useState } from "react";
-import { StoreContext } from "../contextapi/contextapi";
-import { Navigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
-import Places from "../pages/Places";
-import Account from "../pages/Account";
-import BookingPage from "../pages/BookingsPage";
+import React, { useContext, useState } from 'react';
+import { StoreContext } from '../contextapi/contextapi';
+import { Navigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import Places from '../pages/Places';
+import Account from '../pages/Account';
+import BookingPage from '../pages/BookingsPage';
 
 const ProfileComp = () => {
   const [redirect, setRedirect] = useState(false);
   const { url, user, ready, setUser } = useContext(StoreContext);
   const location = useLocation();
   const pathname = location.pathname;
-  let subpage = pathname.split("/")?.[2];
+  let subpage = pathname.split('/')?.[2];
 
   if (subpage === undefined) {
-    subpage = "profile";
+    subpage = 'profile';
   }
 
   const logout = async () => {
     try {
       const response = await axios.post(
-        url + "/api/logout",
+        url + '/api/logout',
         {},
         {
           withCredentials: true,
-        },
+        }
       );
-      setRedirect("/");
+      setRedirect('/');
       toast.success(response.data.message);
       setUser(null);
     } catch (error) {
-      console.error("Logout failed", error);
+      console.error('Logout failed', error);
     }
   };
 
   if (!ready) {
-    return "Loading...";
+    return 'Loading...';
   }
 
   if (ready && !user && !redirect) {
-    return <Navigate to={"/login"} />;
+    return <Navigate to={'/login'} />;
   }
 
   if (redirect) {
@@ -50,7 +50,7 @@ const ProfileComp = () => {
   return (
     <>
       {/* <Account /> */}
-      {subpage === "profile" && (
+      {subpage === 'profile' && (
         <div className="max-w-lg mx-auto my-10 text-center md:max-w-3xl lg:max-w-4xl">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
             Profile
@@ -66,8 +66,8 @@ const ProfileComp = () => {
           </button>
         </div>
       )}
-      {subpage === "bookings" && <BookingPage />}
-      {subpage === "places" && <Places />}
+      {subpage === 'bookings' && <BookingPage />}
+      {subpage === 'places' && <Places />}
     </>
   );
 };

@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { StoreContext } from "../contextapi/contextapi";
-import axios from "axios";
-import { Link, useParams } from "react-router-dom";
-import Account from "./Account";
-import PlaceImg from "../components/PlaceImg";
-import BookingDates from "../components/BookingDates";
+import React, { useContext, useEffect, useState } from 'react';
+import { StoreContext } from '../contextapi/contextapi';
+import axios from 'axios';
+import { Link, useParams } from 'react-router-dom';
+import Account from './Account';
+import PlaceImg from '../components/PlaceImg';
+import BookingDates from '../components/BookingDates';
 
 const BookingsPage = () => {
   const { url } = useContext(StoreContext);
@@ -13,7 +13,7 @@ const BookingsPage = () => {
 
   useEffect(() => {
     async function fetchBookingDetails() {
-      const response = await axios.get(url + "/api/getbookings", {
+      const response = await axios.get(url + '/api/getbookings', {
         withCredentials: true,
       });
       console.log(response.data.data);

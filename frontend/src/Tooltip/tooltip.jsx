@@ -1,6 +1,6 @@
-import { useRef, useEffect, useState } from "react";
-import styles from "./tooltip.module.css";
-const TruncateTooltip = ({ color = "text-gray-500", text, width = 300 }) => {
+import { useRef, useEffect, useState } from 'react';
+import styles from './tooltip.module.css';
+const TruncateTooltip = ({ color = 'text-gray-500', text, width = 300 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const textRef = useRef(null);
 
@@ -12,7 +12,7 @@ const TruncateTooltip = ({ color = "text-gray-500", text, width = 300 }) => {
   }, [text]);
 
   return (
-    <div className="relative group" style={{ maxWidth: "100%", width }}>
+    <div className="relative group" style={{ maxWidth: '100%', width }}>
       <p
         ref={textRef}
         className={`${styles.text} text-sm ${color} transition-all`}

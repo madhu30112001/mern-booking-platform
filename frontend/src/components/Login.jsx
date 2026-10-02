@@ -1,14 +1,14 @@
-import React, { useContext, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { StoreContext } from "../contextapi/contextapi";
-import axios from "axios";
-import register from "./Register";
+import React, { useContext, useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { StoreContext } from '../contextapi/contextapi';
+import axios from 'axios';
+import register from './Register';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 const Login = () => {
-  const { url, setToken, setUser,setCurrentState } = useContext(StoreContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { url, setToken, setUser, setCurrentState } = useContext(StoreContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [redirect, setredirect] = useState(false);
 
   const handleLoginSubmit = async (event) => {
@@ -17,7 +17,7 @@ const Login = () => {
       const response = await axios.post(
         `${url}/api/user/login`,
         { email, password },
-        { withCredentials: true },
+        { withCredentials: true }
       );
       if (response.data.success) {
         setUser(response.data.userlogin);
@@ -29,7 +29,7 @@ const Login = () => {
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.error("Error logging in", error);
+      console.error('Error logging in', error);
     }
   };
   if (redirect) {
@@ -68,8 +68,12 @@ const Login = () => {
             By continuing I agree to the terms of use & privacy policy
           </div>
           <div className="p-2 text-center text-gray-500">
-            Don't have an account?{" "}
-            <Link className="underline text-primary" to={"/register"} onClick={()=>setCurrentState("Register")}>
+            Don't have an account?{' '}
+            <Link
+              className="underline text-primary"
+              to={'/register'}
+              onClick={() => setCurrentState('Register')}
+            >
               Register now
             </Link>
           </div>

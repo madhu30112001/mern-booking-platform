@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const PlaceImages = ({ place }) => {
   const [showMore, setShowMore] = useState(false);
@@ -66,10 +66,10 @@ const PlaceImages = ({ place }) => {
                   alt={`Photo of ${place.title}`}
                   onClick={() => setShowMore(true)}
                   className={`w-full h-36 lg:h-[191px] object-cover ${
-                    i === 2 || i === 4 ? "rounded-e-lg" : ""
+                    i === 2 || i === 4 ? 'rounded-e-lg' : ''
                   }`}
                 />
-              ) : null,
+              ) : null
             )}
           </div>
 

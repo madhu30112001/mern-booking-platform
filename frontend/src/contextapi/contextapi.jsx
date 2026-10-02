@@ -1,29 +1,29 @@
-import { createContext, useEffect, useState } from "react";
-import cookies from "js-cookie";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { createContext, useEffect, useState } from 'react';
+import cookies from 'js-cookie';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
-  const url = "http://localhost:4000";
-  const [token, setToken] = useState("");
+  const url = 'http://localhost:4000';
+  const [token, setToken] = useState('');
   const [user, setUser] = useState(null);
-  const[currentState,setCurrentState]=useState("Login")
-  const[profileData,setProfileData]=useState(false)
+  const [currentState, setCurrentState] = useState('Login');
+  const [profileData, setProfileData] = useState(false);
   const [ready, setReady] = useState(false);
   useEffect(() => {
     // Fetch the user profile if the user is not set
     const fetchUser = async () => {
       try {
-        const response = await axios.get(url + "/api/profile", {
+        const response = await axios.get(url + '/api/profile', {
           withCredentials: true,
         });
         setUser(response.data); // Set user data from response
-        setProfileData(true)
+        setProfileData(true);
       } catch (error) {
-        console.error("Failed to fetch user profile", error);
+        console.error('Failed to fetch user profile', error);
         setUser(null); // Handle if user is not logged in or request fails
-        setProfileData(false)
+        setProfileData(false);
       } finally {
         setReady(true); // Set ready state to true regardless of success or failure
       }
@@ -35,7 +35,18 @@ const StoreContextProvider = (props) => {
   }, [user, url]);
   return (
     <StoreContext.Provider
-      value={{ url, token, setToken, user, setUser, ready, setReady, profileData,currentState,setCurrentState }}
+      value={{
+        url,
+        token,
+        setToken,
+        user,
+        setUser,
+        ready,
+        setReady,
+        profileData,
+        currentState,
+        setCurrentState,
+      }}
     >
       {props.children}
     </StoreContext.Provider>

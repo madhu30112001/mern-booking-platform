@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { StoreContext } from "../contextapi/contextapi";
-import axios from "axios";
-import AddressLink from "../components/AddressLink";
-import PlaceImages from "../components/PlaceImages";
-import BookingDates from "../components/BookingDates";
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { StoreContext } from '../contextapi/contextapi';
+import axios from 'axios';
+import AddressLink from '../components/AddressLink';
+import PlaceImages from '../components/PlaceImages';
+import BookingDates from '../components/BookingDates';
 
 const BookingPage = () => {
   const { id } = useParams();
@@ -15,7 +15,7 @@ const BookingPage = () => {
     async function fetchbook() {
       if (id) {
         try {
-          const response = await axios.get(url + "/api/getbookings", {
+          const response = await axios.get(url + '/api/getbookings', {
             withCredentials: true,
           });
 
@@ -25,7 +25,7 @@ const BookingPage = () => {
             setBooking(getdata);
           }
         } catch (error) {
-          console.error("Error fetching booking:", error);
+          console.error('Error fetching booking:', error);
         }
       }
     }

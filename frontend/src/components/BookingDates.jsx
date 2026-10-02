@@ -1,6 +1,6 @@
-import React from "react";
-import { differenceInCalendarDays } from "date-fns";
-import { format } from "date-fns";
+import React from 'react';
+import { differenceInCalendarDays } from 'date-fns';
+import { format } from 'date-fns';
 
 const BookingDates = ({ book }) => {
   return (
@@ -23,8 +23,8 @@ const BookingDates = ({ book }) => {
         <p className="">
           {differenceInCalendarDays(
             new Date(book.checkOut),
-            new Date(book.checkIn),
-          )}{" "}
+            new Date(book.checkIn)
+          )}{' '}
           nights
         </p>
       </div>
@@ -42,7 +42,7 @@ const BookingDates = ({ book }) => {
             clipRule="evenodd"
           />
         </svg>
-        <p>{format(new Date(book.checkIn), "yyyy-MM-dd")}</p>
+        <p>{format(new Date(book.checkIn), 'yyyy-MM-dd')}</p>
       </div>
 
       <span className="hidden sm:inline-block">&rarr;</span>
@@ -60,7 +60,7 @@ const BookingDates = ({ book }) => {
             clipRule="evenodd"
           />
         </svg>
-        <p>{format(new Date(book.checkOut), "yyyy-MM-dd")}</p>
+        <p>{format(new Date(book.checkOut), 'yyyy-MM-dd')}</p>
       </div>
     </div>
   );

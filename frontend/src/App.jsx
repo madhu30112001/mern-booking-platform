@@ -3,23 +3,23 @@ import {
   Routes,
   BrowserRouter as Router,
   useParams,
-} from "react-router-dom";
-import Login from "./components/Login";
-import Layout from "./components/Layout";
-import Index from "./pages/Index";
-import axios from "axios";
-import Register from "./components/Register";
-import { useState, useEffect } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Account from "./pages/Account";
-import "./index.css";
-import Places from "./pages/Places";
-import Placeform from "./components/Placeform";
-import ProfileComp from "./components/ProfileComp";
-import PlacesInfo from "./components/PlacesInfo";
-import BookingsPage from "./pages/BookingsPage";
-import BookingPage from "./pages/BookingPage";
+} from 'react-router-dom';
+import Login from './components/Login';
+import Layout from './components/Layout';
+import Index from './pages/Index';
+import axios from 'axios';
+import Register from './components/Register';
+import { useState, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Account from './pages/Account';
+import './index.css';
+import Places from './pages/Places';
+import Placeform from './components/Placeform';
+import ProfileComp from './components/ProfileComp';
+import PlacesInfo from './components/PlacesInfo';
+import BookingsPage from './pages/BookingsPage';
+import BookingPage from './pages/BookingPage';
 function App() {
   return (
     <>

@@ -1,27 +1,27 @@
-import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
-import Photos from "../components/Photos";
-import PerksLabels from "../perks/PerksLabels";
-import { StoreContext } from "../contextapi/contextapi";
-import { Navigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import Account from "../pages/Account";
+import React, { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
+import Photos from '../components/Photos';
+import PerksLabels from '../perks/PerksLabels';
+import { StoreContext } from '../contextapi/contextapi';
+import { Navigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Account from '../pages/Account';
 
 const Placeform = () => {
   const { url } = useContext(StoreContext);
   const { id } = useParams();
 
-  const [title, setTitle] = useState("");
-  const [address, setAddress] = useState("");
+  const [title, setTitle] = useState('');
+  const [address, setAddress] = useState('');
   const [addedPhotos, setAddedPhotos] = useState([]);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const [perks, setPerks] = useState([]);
-  const [extraInfo, setExtraInfo] = useState("");
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
+  const [extraInfo, setExtraInfo] = useState('');
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
   const [maxGuests, setMaxGuests] = useState(1);
   const [price, setPrice] = useState(1000);
-  const [redirect, setRedirect] = useState("");
+  const [redirect, setRedirect] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,19 +32,19 @@ const Placeform = () => {
 
     const fetchPlaceData = async () => {
       try {
-        const response = await axios.get(url + "/api/places/" + id, {
+        const response = await axios.get(url + '/api/places/' + id, {
           withCredentials: true,
         });
 
         const {
-          title = "",
-          address = "",
+          title = '',
+          address = '',
           addedPhotos = [],
-          description = "",
+          description = '',
           perks = [],
-          extraInfo = "",
-          checkIn = "",
-          checkOut = "",
+          extraInfo = '',
+          checkIn = '',
+          checkOut = '',
           maxGuests = 1,
           price,
         } = response.data;
@@ -60,7 +60,7 @@ const Placeform = () => {
         setMaxGuests(maxGuests);
         setPrice(price);
       } catch (error) {
-        toast.error("Failed to fetch place data");
+        toast.error('Failed to fetch place data');
       } finally {
         setLoading(false);
       }
@@ -73,12 +73,12 @@ const Placeform = () => {
     ev.preventDefault();
 
     if (addedPhotos.length < 5) {
-      toast.error("Please upload at least 5 photos.");
+      toast.error('Please upload at least 5 photos.');
       return;
     }
 
-    const endpoint = id ? `/api/places/${id}` : "/api/places";
-    const method = id ? "put" : "post";
+    const endpoint = id ? `/api/places/${id}` : '/api/places';
+    const method = id ? 'put' : 'post';
 
     try {
       await axios[method](
@@ -95,14 +95,14 @@ const Placeform = () => {
           maxGuests,
           price,
         },
-        { withCredentials: true },
+        { withCredentials: true }
       );
-      setRedirect("/account/places");
+      setRedirect('/account/places');
       toast.success(
-        id ? "Place updated successfully" : "Place added successfully",
+        id ? 'Place updated successfully' : 'Place added successfully'
       );
     } catch (error) {
-      toast.error("Failed to save place data");
+      toast.error('Failed to save place data');
     }
   };
 
@@ -196,7 +196,7 @@ const Placeform = () => {
             onChange={(ev) => setPrice(Number(ev.target.value))}
             placeholder="1000"
             min={1000}
-            error={price < 1000 ? "Price must be at least 1000" : ""}
+            error={price < 1000 ? 'Price must be at least 1000' : ''}
           />
         </div>
         <div className="flex justify-end gap-4 mt-6">
@@ -209,7 +209,7 @@ const Placeform = () => {
           </button>
           <button
             type="button"
-            onClick={() => setRedirect("/account/places")}
+            onClick={() => setRedirect('/account/places')}
             className="px-6 py-2 bg-gray-300 text-gray-800 rounded-full"
           >
             Cancel

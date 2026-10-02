@@ -1,15 +1,14 @@
-import React, { useContext, useRef, useState, useEffect } from "react"; // ⬅️ updated
-import { Link, useNavigate,Navigate } from "react-router-dom"; // ⬅️ updated
-import { StoreContext } from "../contextapi/contextapi";
-import Login from "./Login";
-import ProfileComp from "./ProfileComp";
+import React, { useContext, useRef, useState, useEffect } from 'react'; // ⬅️ updated
+import { Link, useNavigate, Navigate } from 'react-router-dom'; // ⬅️ updated
+import { StoreContext } from '../contextapi/contextapi';
+import Login from './Login';
+import ProfileComp from './ProfileComp';
 const Header = ({
-  headerClass = "",
+  headerClass = '',
   isSpecialPage = false,
-  loginPage = "",
+  loginPage = '',
 }) => {
-  
-  const { user,setCurrentState,currState } = useContext(StoreContext);
+  const { user, setCurrentState, currState } = useContext(StoreContext);
   const [showDropdown, setShowDropdown] = useState(false); // ⬅️ added
   const dropdownRef = useRef(null); // ⬅️ added
   const navigate = useNavigate(); // ⬅️ added
@@ -26,20 +25,19 @@ const Header = ({
         setShowDropdown(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-  
 
   return (
     <>
       <header
-        className={`w-full ${loginPage ? "h-20" : ""} flex items-center justify-between bg-gradient-to-b from-white to-gray-100 ${headerClass}`}
+        className={`w-full ${loginPage ? 'h-20' : ''} flex items-center justify-between bg-gradient-to-b from-white to-gray-100 ${headerClass}`}
       >
         <div className="">
           <Link
-            to={"/"}
-            className={`${!isSpecialPage && "lg:mb-24"} ${loginPage && "mb-1"} flex items-center `}
+            to={'/'}
+            className={`${!isSpecialPage && 'lg:mb-24'} ${loginPage && 'mb-1'} flex items-center `}
           >
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -63,12 +61,11 @@ const Header = ({
             <span className="font-bold text-xl ml-2">Nesto</span>
           </Link>
         </div>
-        {!loginPage &&  (
+        {!loginPage && (
           <div
-            className={`hidden sm:flex flex-col items-center gap-10 w-full ${isSpecialPage ? "" : "h-[9rem]"}`}
+            className={`hidden sm:flex flex-col items-center gap-10 w-full ${isSpecialPage ? '' : 'h-[9rem]'}`}
           >
-            
-            {!isSpecialPage&& (
+            {!isSpecialPage && (
               <div className="flex gap-5 justify-center items-center">
                 <div className="flex items-center gap-2">
                   <svg
@@ -175,7 +172,7 @@ const Header = ({
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={toggleDropdown}
-            className={`${!isSpecialPage && "sm:mt-0 lg:mb-24"} ${loginPage && "mb-1 sm:mt-0"} flex items-center border gap-2 text-sm border-gray-300 rounded-full py-2 px-4`}
+            className={`${!isSpecialPage && 'sm:mt-0 lg:mb-24'} ${loginPage && 'mb-1 sm:mt-0'} flex items-center border gap-2 text-sm border-gray-300 rounded-full py-2 px-4`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -206,8 +203,15 @@ const Header = ({
               </svg>
             </div>
             <span className="hidden sm:block text-base">
-              {user ? user.name : currState === "Login" ? <Navigate to="/login"/> : currState === "Register" ? <Navigate to="/register"/> : ""}
-
+              {user ? (
+                user.name
+              ) : currState === 'Login' ? (
+                <Navigate to="/login" />
+              ) : currState === 'Register' ? (
+                <Navigate to="/register" />
+              ) : (
+                ''
+              )}
             </span>
           </button>
 
@@ -215,19 +219,19 @@ const Header = ({
           {showDropdown && user && (
             <div className="absolute right-0 top-10 mt-2 bg-white border shadow-md rounded-md w-48 z-50">
               <button
-                onClick={() => handleNavigation("/account")}
+                onClick={() => handleNavigation('/account')}
                 className="w-full text-left px-4 py-2 hover:bg-gray-100"
               >
                 Profile
               </button>
               <button
-                onClick={() => handleNavigation("/account/bookings")}
+                onClick={() => handleNavigation('/account/bookings')}
                 className="w-full text-left px-4 py-2 hover:bg-gray-100"
               >
                 My Bookings
               </button>
               <button
-                onClick={() => handleNavigation("/account/places")}
+                onClick={() => handleNavigation('/account/places')}
                 className="w-full text-left px-4 py-2 hover:bg-gray-100"
               >
                 My Accommodations

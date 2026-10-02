@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { StoreContext } from "../contextapi/contextapi";
-import axios from "axios";
-import Widget from "./widget";
-import PlaceImages from "./PlaceImages";
-import AddressLink from "./AddressLink";
-import TruncateTooltip from "../Tooltip/tooltip";
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { StoreContext } from '../contextapi/contextapi';
+import axios from 'axios';
+import Widget from './widget';
+import PlaceImages from './PlaceImages';
+import AddressLink from './AddressLink';
+import TruncateTooltip from '../Tooltip/tooltip';
 
 const PlacesInfo = () => {
   const { url } = useContext(StoreContext);
@@ -21,7 +21,7 @@ const PlacesInfo = () => {
         });
         setPlace(response.data);
       } catch (error) {
-        console.error("Failed to get data in PlacesInfo", error);
+        console.error('Failed to get data in PlacesInfo', error);
       }
     };
     fetchInfo();
@@ -35,7 +35,7 @@ const PlacesInfo = () => {
             {place.title}
           </h1>
           <h1 className="">
-            {" "}
+            {' '}
             <AddressLink>{place.address}</AddressLink>
           </h1>
 
@@ -45,7 +45,7 @@ const PlacesInfo = () => {
             <div className="flex-1 ">
               <h2 className="font-bold text-lg sm:text-xl mb-2">Description</h2>
               <p className="whitespace-normal max-w-96 break-words">
-                {place.description}{" "}
+                {place.description}{' '}
               </p>
               <p className="mt-3">Check-In Time: {place.checkIn}</p>
               <p className="mt-1">Check-Out Time: {place.checkOut}</p>

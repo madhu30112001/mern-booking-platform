@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Account = () => {
   const { pathname } = useLocation();
-  let subpage = pathname.split("/")?.[2] || "profile";
+  let subpage = pathname.split('/')?.[2] || 'profile';
 
   function renderContent(type = null) {
-    let classes = "py-2 px-6 inline-flex gap-2 rounded-full";
+    let classes = 'py-2 px-6 inline-flex gap-2 rounded-full';
     if (type === subpage) {
-      classes += " bg-primary text-white";
+      classes += ' bg-primary text-white';
     } else {
-      classes += " bg-gray-200";
+      classes += ' bg-gray-200';
     }
     return classes;
   }
@@ -18,7 +18,7 @@ const Account = () => {
   return (
     <div>
       <nav className="w-full flex justify-center mt-8 mb-8 gap-4 flex-wrap sm:flex-nowrap">
-        <Link className={renderContent("profile")} to="/account">
+        <Link className={renderContent('profile')} to="/account">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -35,7 +35,7 @@ const Account = () => {
           </svg>
           My profile
         </Link>
-        <Link className={renderContent("bookings")} to="/account/bookings">
+        <Link className={renderContent('bookings')} to="/account/bookings">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -52,7 +52,7 @@ const Account = () => {
           </svg>
           My Bookings
         </Link>
-        <Link className={renderContent("places")} to="/account/places">
+        <Link className={renderContent('places')} to="/account/places">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

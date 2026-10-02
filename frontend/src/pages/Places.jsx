@@ -1,28 +1,28 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import Placeform from "../components/Placeform";
-import axios from "axios";
-import { StoreContext } from "../contextapi/contextapi";
-import Account from "./Account";
-import PlaceImg from "../components/PlaceImg";
-import TruncateTooltip from "../Tooltip/tooltip";
+import React, { useState, useContext, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import Placeform from '../components/Placeform';
+import axios from 'axios';
+import { StoreContext } from '../contextapi/contextapi';
+import Account from './Account';
+import PlaceImg from '../components/PlaceImg';
+import TruncateTooltip from '../Tooltip/tooltip';
 
 const Places = () => {
   const { url } = useContext(StoreContext);
   const [placeData, setPlaceData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { action } = useParams();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await axios.get(url + "/api/places", {
+        const response = await axios.get(url + '/api/places', {
           withCredentials: true,
         });
         setPlaceData(response.data);
       } catch (error) {
-        setError("Failed to load places. Please try again.");
+        setError('Failed to load places. Please try again.');
       } finally {
         setLoading(false);
       }
@@ -34,7 +34,7 @@ const Places = () => {
     <div className="min-h-screen">
       {/* <Account /> */}
 
-      {action !== "new" && (
+      {action !== 'new' && (
         <div className="max-w-6xl mx-auto">
           <div className="my-6 text-center">
             <Link
@@ -87,9 +87,9 @@ const Places = () => {
                       <h3>{place.title}</h3>
                       <p className="text-gray-500">{place.address}</p>
                       <p className="max-w-xs lg:max-w-4xl">
-                        {" "}
+                        {' '}
                         <TruncateTooltip
-                          color={"text-gray-500"}
+                          color={'text-gray-500'}
                           text={place.description}
                           width={1000}
                         />
@@ -103,7 +103,7 @@ const Places = () => {
         </div>
       )}
 
-      {action === "new" && <Placeform />}
+      {action === 'new' && <Placeform />}
     </div>
   );
 };

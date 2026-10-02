@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-const AddressLink = ({ children, className = "null" }) => {
+const AddressLink = ({ children, className = 'null' }) => {
   if (!className) {
-    className = "my-3 block";
+    className = 'my-3 block';
   }
-  className += " flex gap-1 underline ";
+  className += ' flex gap-1 underline ';
   return (
     <a href="" className={className}>
       <svg

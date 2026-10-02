@@ -1,13 +1,13 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { StoreContext } from "../contextapi/contextapi";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import React, { useContext, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { StoreContext } from '../contextapi/contextapi';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 import {
   faHeart as solidHeart,
   faStar,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 
 const Index = () => {
   const { url, profileData } = useContext(StoreContext);
@@ -21,7 +21,7 @@ const Index = () => {
     const fetchPlaces = async () => {
       try {
         if (!profileData) {
-          navigate("/login");
+          navigate('/login');
         } else {
           const response = await axios.get(`${url}/api/places`, {
             withCredentials: true,
@@ -34,8 +34,8 @@ const Index = () => {
           setPlaceRatings(ratings);
         }
       } catch (error) {
-        console.error("Error fetching places:", error);
-        setError("Failed to load places.");
+        console.error('Error fetching places:', error);
+        setError('Failed to load places.');
       } finally {
         setLoading(false);
       }
@@ -76,9 +76,9 @@ const Index = () => {
                 <FontAwesomeIcon
                   icon={likedPlaces[place._id] ? solidHeart : regularHeart}
                   className={`w-5 h-5 ${
-                    likedPlaces[place._id] ? "text-red-500" : "text-white"
+                    likedPlaces[place._id] ? 'text-red-500' : 'text-white'
                   }`}
-                  style={{ stroke: "white" }}
+                  style={{ stroke: 'white' }}
                 />
               </div>
 
@@ -90,7 +90,7 @@ const Index = () => {
                   className="w-full h-48 sm:h-44 object-cover"
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = "/fallback.jpg";
+                    e.target.src = '/fallback.jpg';
                   }}
                 />
               ) : (

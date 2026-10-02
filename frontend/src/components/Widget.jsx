@@ -1,36 +1,36 @@
-import React, { useContext, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
-import { StoreContext } from "../contextapi/contextapi";
-import axios from "axios";
-import { differenceInCalendarDays } from "date-fns";
+import React, { useContext, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+import { StoreContext } from '../contextapi/contextapi';
+import axios from 'axios';
+import { differenceInCalendarDays } from 'date-fns';
 
 const Widget = ({ place }) => {
   const { url } = useContext(StoreContext);
 
-  const [checkIn, setcheckIn] = useState("");
-  const [checkOut, setcheckOut] = useState("");
+  const [checkIn, setcheckIn] = useState('');
+  const [checkOut, setcheckOut] = useState('');
   const [noOfGuests, setnoOfGuests] = useState(1);
-  const [name, setName] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [redirect, setRedirect] = useState("");
+  const [name, setName] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [redirect, setRedirect] = useState('');
 
   let numberOfNights = 0;
   if (checkIn && checkOut) {
     numberOfNights = differenceInCalendarDays(
       new Date(checkOut),
-      new Date(checkIn),
+      new Date(checkIn)
     );
   }
 
   async function handlebooking() {
     if (numberOfNights < 1) {
-      alert("please book atleast 1 Night");
+      alert('please book atleast 1 Night');
       return;
     }
 
     try {
       const response = await axios.post(
-        url + "/api/bookplace",
+        url + '/api/bookplace',
         {
           place: place._id,
           checkIn,
@@ -40,18 +40,18 @@ const Widget = ({ place }) => {
           mobile,
           price: numberOfNights * place.price,
         },
-        { withCredentials: true },
+        { withCredentials: true }
       );
       console.log(response);
       const bookingId = response?.data?.data?._id; // Optional chaining to safely access _id
       if (bookingId) {
         setRedirect(`/account/bookings/${bookingId}`);
       } else {
-        console.log("Booking ID not returned");
+        console.log('Booking ID not returned');
       }
     } catch (error) {
       console.error(
-        error.response?.data?.message || "Error occurred while booking",
+        error.response?.data?.message || 'Error occurred while booking'
       );
     }
   }

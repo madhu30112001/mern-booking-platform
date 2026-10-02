@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
-import { StoreContext } from "../contextapi/contextapi";
-import axios from "axios";
-import { toast } from "react-toastify";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { StoreContext } from '../contextapi/contextapi';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const Register = () => {
   const { url, setToken, setCurrentState } = useContext(StoreContext);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   function onChangeHandler(event) {
     const name = event.target.name;
     const value = event.target.value;
@@ -21,7 +21,7 @@ const Register = () => {
       const response = await axios.post(
         `${url}/api/user/register`,
         { name, email, password },
-        { withCredentials: true },
+        { withCredentials: true }
       );
       if (response.data.success) {
         // setToken(response.data.token);
@@ -34,7 +34,7 @@ const Register = () => {
 
       // Handle success (e.g., redirect, show a success message)
     } catch (error) {
-      console.error("There was an error registering the user:", error);
+      console.error('There was an error registering the user:', error);
       // Handle error (e.g., show an error message)
     }
   };
@@ -82,8 +82,12 @@ const Register = () => {
             By continuing I agree to the terms of use & privacy policy
           </div>
           <div className="p-2 text-center text-gray-500">
-            Already a member?{" "}
-            <Link className="underline text-primary" to={"/login"} onClick={()=>setCurrentState("Login")}>
+            Already a member?{' '}
+            <Link
+              className="underline text-primary"
+              to={'/login'}
+              onClick={() => setCurrentState('Login')}
+            >
               Login now
             </Link>
           </div>

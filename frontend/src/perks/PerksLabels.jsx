@@ -1,6 +1,6 @@
-import React from "react";
-import { faCat, faDog } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { faCat, faDog } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const PerksLabels = ({ selected, onChange }) => {
   function handleCbClick(ev) {
@@ -18,7 +18,7 @@ const PerksLabels = ({ selected, onChange }) => {
           type="checkbox"
           name="wifi"
           onChange={handleCbClick}
-          checked={selected.includes("wifi")}
+          checked={selected.includes('wifi')}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ const PerksLabels = ({ selected, onChange }) => {
           type="checkbox"
           name="parking"
           onChange={handleCbClick}
-          checked={selected.includes("parking")}
+          checked={selected.includes('parking')}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ const PerksLabels = ({ selected, onChange }) => {
           type="checkbox"
           name="tv"
           onChange={handleCbClick}
-          checked={selected.includes("tv")}
+          checked={selected.includes('tv')}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ const PerksLabels = ({ selected, onChange }) => {
           type="checkbox"
           name="radio"
           onChange={handleCbClick}
-          checked={selected.includes("radio")}
+          checked={selected.includes('radio')}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ const PerksLabels = ({ selected, onChange }) => {
           type="checkbox"
           name="pets"
           onChange={handleCbClick}
-          checked={selected.includes("pets")}
+          checked={selected.includes('pets')}
         />
         <FontAwesomeIcon className="w-6 h-6" icon={faDog} />
         <span>Pets</span>
@@ -124,7 +124,7 @@ const PerksLabels = ({ selected, onChange }) => {
           type="checkbox"
           name="entrance"
           onChange={handleCbClick}
-          checked={selected.includes("entrance")}
+          checked={selected.includes('entrance')}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"

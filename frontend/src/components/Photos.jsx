@@ -1,45 +1,45 @@
-import React from "react";
-import { useState, useContext } from "react";
-import axios from "axios";
-import { StoreContext } from "../contextapi/contextapi";
+import React from 'react';
+import { useState, useContext } from 'react';
+import axios from 'axios';
+import { StoreContext } from '../contextapi/contextapi';
 const Photos = ({ addedPhotos, setAddedPhotos }) => {
   const { url } = useContext(StoreContext);
   // const [addedPhotos, setAddedPhotos] = useState([]);
-  const [photoLink, setPhotoLink] = useState("");
+  const [photoLink, setPhotoLink] = useState('');
   async function addPhotoByLink(ev) {
     ev.preventDefault();
     if (addedPhotos.length >= 5) {
-      alert("You can only upload a maximum of 5 photos.");
+      alert('You can only upload a maximum of 5 photos.');
       return;
     }
     try {
-      const response = await axios.post(url + "/api/images/uploadlink", {
+      const response = await axios.post(url + '/api/images/uploadlink', {
         link: photoLink,
       });
       const uploadedpphoto = response.data.path;
       setAddedPhotos((prev) => [...prev, uploadedpphoto]);
-      setPhotoLink("");
+      setPhotoLink('');
     } catch (error) {
-      console.error("failed to upload photo:", error);
+      console.error('failed to upload photo:', error);
     }
   }
   async function DeletePhotos(photo, ev) {
     if (ev) ev.preventDefault();
     try {
-      const response = await axios.delete(url + "/api/images/delete", {
+      const response = await axios.delete(url + '/api/images/delete', {
         data: { path: photo },
       });
-      if (response.data.message === "Image deleted successfully.") {
+      if (response.data.message === 'Image deleted successfully.') {
         setAddedPhotos((prev) => prev.filter((item) => item !== photo));
       }
     } catch (error) {
-      console.error("Error deleting the photo", error);
+      console.error('Error deleting the photo', error);
     }
   }
   function selectmainphoto(photo, ev) {
     if (ev) ev.preventDefault();
     const addedphotoswithoutselected = addedPhotos.filter(
-      (item) => item !== photo,
+      (item) => item !== photo
     );
     const newlyaddedphotos = [photo, ...addedphotoswithoutselected];
     setAddedPhotos(newlyaddedphotos);
@@ -49,34 +49,34 @@ const Photos = ({ addedPhotos, setAddedPhotos }) => {
     const files = ev.target.files;
 
     if (!files || files.length === 0) {
-      alert("Please select one or more files.");
+      alert('Please select one or more files.');
       return;
     }
     if (files.length + addedPhotos.length > 5) {
-      alert("You can upload a maximum of 5 photos.");
+      alert('You can upload a maximum of 5 photos.');
       return;
     }
     const formData = new FormData();
     for (let i = 0; i < files.length; i++) {
-      formData.append("files", files[i]);
+      formData.append('files', files[i]);
     }
 
     try {
       const response = await axios.post(
-        url + "/api/images/fileupload",
+        url + '/api/images/fileupload',
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
-        },
+        }
       );
       const uploadedPhotos = response.data.paths;
       setAddedPhotos((prev) => [...prev, ...uploadedPhotos]); // Add uploaded photo to the list
-      console.log("File uploaded successfully:", response.data);
+      console.log('File uploaded successfully:', response.data);
       // Handle successful upload
     } catch (error) {
-      console.error("Error uploading file:", error);
+      console.error('Error uploading file:', error);
     }
   }
   return (
@@ -86,7 +86,7 @@ const Photos = ({ addedPhotos, setAddedPhotos }) => {
           type="text"
           value={photoLink}
           onChange={(ev) => setPhotoLink(ev.target.value)}
-          placeholder={"Add using a link....jpg"}
+          placeholder={'Add using a link....jpg'}
         />
         <button
           onClick={addPhotoByLink}
