@@ -1,13 +1,13 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const BookingSchema = new mongoose.Schema(
   {
     place: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "places",
+      ref: 'places',
       required: true,
     },
-    owner: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
     checkIn: { type: String, required: true },
     checkOut: { type: String, required: true },
     noOfGuests: { type: Number },
@@ -18,9 +18,9 @@ const BookingSchema = new mongoose.Schema(
   { timestamps: true },
   {
     toObject: { getters: true },
-  },
+  }
 );
 
 const BookingModel =
-  mongoose.models.Booking || mongoose.model("Booking", BookingSchema);
+  mongoose.models.Booking || mongoose.model('Booking', BookingSchema);
 export default BookingModel;

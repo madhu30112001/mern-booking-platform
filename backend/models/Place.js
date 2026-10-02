@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const placescheme = new mongoose.Schema({
-  owner: { type: mongoose.Schema.Types.ObjectId, ref: "Users", required: true },
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true },
   title: String,
   address: String,
   addedPhotos: [String],
@@ -15,6 +15,6 @@ const placescheme = new mongoose.Schema({
 });
 
 const placeModel =
-  mongoose.models.places || mongoose.model("places", placescheme);
+  mongoose.models.places || mongoose.model('places', placescheme);
 
 export default placeModel;

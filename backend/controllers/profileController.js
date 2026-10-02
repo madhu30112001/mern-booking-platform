@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-import userModel from "../models/Users.js";
+import jwt from 'jsonwebtoken';
+import userModel from '../models/Users.js';
 const profile = (req, res) => {
   const { token } = req.cookies;
   if (token) {
@@ -13,12 +13,12 @@ const profile = (req, res) => {
   }
 };
 const logout = (req, res) => {
-  res.clearCookie("token", {
+  res.clearCookie('token', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // Use secure cookie in production
-    sameSite: "Strict", // Prevent CSRF attacks
+    secure: process.env.NODE_ENV === 'production', // Use secure cookie in production
+    sameSite: 'Strict', // Prevent CSRF attacks
   });
 
-  res.json({ success: true, message: "Logged out successfully" });
+  res.json({ success: true, message: 'Logged out successfully' });
 };
 export { profile, logout };
